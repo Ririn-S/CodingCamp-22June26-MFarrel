@@ -32,13 +32,14 @@ Implement a single-page, client-side web app using plain HTML, CSS, and vanilla 
     - All UI sections (form, balance, list, chart) must visually reflect the active theme
     - _Requirements: Bonus E.1, Bonus E.2_
 
-- [ ] 3. Implement Constants & Config and State sections of app.js
-  - Define storage key constants: `STORAGE_KEY_TRANSACTIONS = "ebv_transactions"`, `STORAGE_KEY_CATEGORIES = "ebv_categories"`, `STORAGE_KEY_THEME = "ebv_theme"`
-  - Define `DEFAULT_CATEGORIES = ["Food", "Transport", "Fun"]` and `MAX_AMOUNT = 999_999_999.99`
-  - Define the `state` object: `{ transactions: [], categories: [], theme: "light", activeMonth: null, chartInstance: null }`
-  - _Requirements: 6.1, 5.1, Bonus E.4_
+- [ ] 3. Implement Constants & Config and State sections of `js/app.js`
+  - [ ] 3.1 Define constants and initial state object
+    - Define storage key constants: `STORAGE_KEY_TRANSACTIONS = "ebv_transactions"`, `STORAGE_KEY_CATEGORIES = "ebv_categories"`, `STORAGE_KEY_THEME = "ebv_theme"`
+    - Define `DEFAULT_CATEGORIES = ["Food", "Transport", "Fun"]` and `MAX_AMOUNT = 999_999_999.99`
+    - Define the `state` object: `{ transactions: [], categories: [], theme: "light", activeMonth: null, chartInstance: null }`
+    - _Requirements: 6.1, 5.1, Bonus E.4_
 
-- [ ] 4. Implement Storage section (loadState / saveState)
+- [ ] 4. Implement Storage section (`loadState` / `saveState`)
   - [ ] 4.1 Implement `loadState()`
     - Read `ebv_transactions`: parse JSON; on parse failure set `state.transactions = []` and show `#data-warning` banner
     - Read `ebv_categories`: parse JSON array of custom category strings; merge with `DEFAULT_CATEGORIES` (defaults first)
@@ -136,7 +137,7 @@ Implement a single-page, client-side web app using plain HTML, CSS, and vanilla 
   - [ ] 8.2 Implement `renderList(transactions)`
     - Clear `#transaction-list`
     - If empty: insert `<li class="empty-state">No transactions yet.</li>`
-    - Otherwise: for each transaction (already in reverse-chronological order) insert `<li>` with item name, amount (`.toFixed(2)`), category, and a delete `<button data-id="...">` 
+    - Otherwise: for each transaction (already in reverse-chronological order) insert `<li>` with item name, amount (`.toFixed(2)`), category, and a delete `<button data-id="...">`
     - _Requirements: 2.1, 2.3, 2.5, Bonus B.2_
 
   - [ ] 8.3 Implement `renderChart(transactions)`
@@ -234,14 +235,15 @@ Implement a single-page, client-side web app using plain HTML, CSS, and vanilla 
 ```json
 {
   "waves": [
-    { "id": 0, "tasks": ["2.1", "3"] },
-    { "id": 1, "tasks": ["2.2", "4.1", "4.2"] },
-    { "id": 2, "tasks": ["4.3", "4.4", "4.5", "5.1", "5.2"] },
-    { "id": 3, "tasks": ["5.3", "5.4", "5.5", "7.1", "7.2", "7.3"] },
-    { "id": 4, "tasks": ["7.4", "7.5", "8.1", "8.2", "8.3", "8.4"] },
-    { "id": 5, "tasks": ["8.5", "8.6", "8.7", "9.1"] },
-    { "id": 6, "tasks": ["9.2", "9.3"] },
-    { "id": 7, "tasks": ["10.1", "10.2", "10.3", "10.4"] }
+    { "id": 0, "tasks": ["1", "2.1"] },
+    { "id": 1, "tasks": ["2.2", "3.1"] },
+    { "id": 2, "tasks": ["4.1", "4.2"] },
+    { "id": 3, "tasks": ["4.3", "4.4", "4.5", "5.1", "5.2"] },
+    { "id": 4, "tasks": ["5.3", "5.4", "5.5", "7.1", "7.2", "7.3"] },
+    { "id": 5, "tasks": ["7.4", "7.5", "8.1", "8.2", "8.3", "8.4"] },
+    { "id": 6, "tasks": ["8.5", "8.6", "8.7", "9.1"] },
+    { "id": 7, "tasks": ["9.2", "9.3"] },
+    { "id": 8, "tasks": ["10.1", "10.2", "10.3", "10.4"] }
   ]
 }
 ```
