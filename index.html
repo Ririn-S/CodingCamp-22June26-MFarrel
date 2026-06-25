@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Expense &amp; Budget Visualizer</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Error / Warning Banners -->
+  <div id="storage-error" hidden>
+    Could not save data. Storage may be full.
+  </div>
+  <div id="data-warning" hidden>
+    Previous data could not be loaded and has been cleared.
+  </div>
+
+  <!-- Header -->
+  <header>
+    <h1>Expense &amp; Budget Visualizer</h1>
+    <button id="theme-toggle" type="button" aria-label="Toggle theme">🌙 Dark Mode</button>
+  </header>
+
+  <!-- Main content: two-column layout -->
+  <main>
+
+    <!-- Left Column -->
+    <section class="left-column">
+
+      <!-- Input Form Section -->
+      <section class="form-section">
+        <h2>Add Transaction</h2>
+        <form id="input-form" novalidate>
+          <div class="form-group">
+            <label for="item-name">Item Name</label>
+            <input
+              type="text"
+              id="item-name"
+              name="item-name"
+              maxlength="100"
+              placeholder="e.g. Lunch"
+              autocomplete="off"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="amount">Amount</label>
+            <input
+              type="number"
+              id="amount"
+              name="amount"
+              min="0.01"
+              max="999999999.99"
+              step="0.01"
+              placeholder="0.00"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="category-select">Category</label>
+            <select id="category-select" name="category-select">
+              <!-- Populated by app.js -->
+            </select>
+          </div>
+
+          <!-- Bonus A: Custom Category -->
+          <div class="form-group custom-category-group">
+            <label for="custom-category">New Category</label>
+            <div class="custom-category-row">
+              <input
+                type="text"
+                id="custom-category"
+                name="custom-category"
+                maxlength="100"
+                placeholder="Custom category name"
+                autocomplete="off"
+              />
+              <button id="add-category-btn" type="button">Add</button>
+            </div>
+            <p id="category-error" class="error-message" aria-live="polite"></p>
+          </div>
+
+          <p id="form-error" class="error-message" aria-live="polite"></p>
+
+          <button id="submit-btn" type="submit">Add Transaction</button>
+        </form>
+      </section>
+
+      <!-- Balance Section -->
+      <section class="balance-section">
+        <h2>Total Balance</h2>
+        <p class="balance-value">
+          <span id="balance-display">0.00</span>
+        </p>
+      </section>
+
+      <!-- Transaction List Section -->
+      <section class="list-section">
+        <h2>Transactions</h2>
+        <ul id="transaction-list" aria-label="Transaction list">
+          <!-- Populated by app.js -->
+        </ul>
+      </section>
+
+    </section>
+    <!-- /Left Column -->
+
+    <!-- Right Column -->
+    <section class="right-column">
+
+      <!-- Bonus B: Month Selector -->
+      <section class="month-section">
+        <h2>Filter by Month</h2>
+        <select id="month-selector" aria-label="Select month">
+          <option value="">All Transactions</option>
+          <!-- Populated by app.js -->
+        </select>
+      </section>
+
+      <!-- Chart Section -->
+      <section class="chart-section">
+        <h2>Spending by Category</h2>
+        <div class="chart-container">
+          <canvas id="chart-canvas" aria-label="Spending pie chart" role="img"></canvas>
+          <p id="chart-no-data" class="chart-no-data">No data available.</p>
+        </div>
+      </section>
+
+    </section>
+    <!-- /Right Column -->
+
+  </main>
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- App logic -->
+  <script src="js/app.js"></script>
+
+</body>
+</html>
